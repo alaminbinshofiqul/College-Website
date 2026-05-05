@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>CUET Bus Booking System</title>
+  <style>
+    *{
+      margin:0;
+      padding:0;
+      box-sizing:border-box;
+      font-family:Arial, sans-serif;
+    }
+
+    body{
+      background:#f4f7fb;
+      color:#333;
+    }
+
+    header{
+      background:#003366;
+      color:white;
+      padding:20px;
+      text-align:center;
+    }
+
+    header h1{
+      font-size:32px;
+    }
+
+    nav{
+      background:#00509e;
+      padding:12px;
+      text-align:center;
+    }
+
+    nav a{
+      color:white;
+      text-decoration:none;
+      margin:0 15px;
+      font-weight:bold;
+    }
+
+    .hero{
+      background:linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)),
+      url('https://images.unsplash.com/photo-1544620347-c4fd4a3d5957?auto=format&fit=crop&w=1400&q=80') center/cover;
+      color:white;
+      text-align:center;
+      padding:100px 20px;
+    }
+
+    .hero h2{
+      font-size:42px;
+      margin-bottom:15px;
+    }
+
+    .hero p{
+      font-size:18px;
+      margin-bottom:25px;
+    }
+
+    .btn{
+      background:#ffcc00;
+      color:#003366;
+      padding:12px 24px;
+      border:none;
+      border-radius:6px;
+      font-size:16px;
+      cursor:pointer;
+      font-weight:bold;
+    }
+
+    .container{
+      width:90%;
+      max-width:1100px;
+      margin:40px auto;
+    }
+
+    .booking-form{
+      background:white;
+      padding:30px;
+      border-radius:10px;
+      box-shadow:0 4px 10px rgba(0,0,0,0.1);
+      margin-bottom:40px;
+    }
+
+    .booking-form h3{
+      margin-bottom:20px;
+      color:#003366;
+      text-align:center;
+    }
+
+    .form-group{
+      margin-bottom:15px;
+    }
+
+    label{
+      display:block;
+      margin-bottom:6px;
+      font-weight:bold;
+    }
+
+    input, select{
+      width:100%;
+      padding:12px;
+      border:1px solid #ccc;
+      border-radius:6px;
+      font-size:15px;
+    }
+
+    .routes{
+      display:grid;
+      grid-template-columns:repeat(auto-fit, minmax(250px,1fr));
+      gap:20px;
+    }
+
+    .route-card{
+      background:white;
+      padding:20px;
+      border-radius:10px;
+      box-shadow:0 4px 10px rgba(0,0,0,0.1);
+      text-align:center;
+    }
+
+    .route-card h4{
+      color:#003366;
+      margin-bottom:10px;
+    }
+
+    .route-card p{
+      margin:8px 0;
+    }
+
+    footer{
+      background:#003366;
+      color:white;
+      text-align:center;
+      padding:20px;
+      margin-top:40px;
+    }
+
+    .success{
+      margin-top:15px;
+      padding:12px;
+      background:#d4edda;
+      color:#155724;
+      border-radius:6px;
+      display:none;
+      text-align:center;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>CUET Bus Booking System</h1>
+    <p>Book Your Campus Bus Seat Easily</p>
+  </header>
+
+  <nav>
+    <a href="#">Home</a>
+    <a href="#booking">Book Ticket</a>
+    <a href="#routes">Routes</a>
+    <a href="#contact">Contact</a>
+  </nav>
+
+  <section class="hero">
+    <h2>Welcome to CUET Bus Service</h2>
+    <p>Fast, Easy and Secure Bus Booking for Students</p>
+    <button class="btn" onclick="scrollToBooking()">Book Now</button>
+  </section>
+
+  <div class="container">
+
+    <section class="booking-form" id="booking">
+      <h3>Book Your Seat</h3>
+      <form id="busForm">
+        <div class="form-group">
+          <label>Student Name</label>
+          <input type="text" id="name" required>
+        </div>
+
+        <div class="form-group">
+          <label>Student ID</label>
+          <input type="text" id="studentId" required>
+        </div>
+
+        <div class="form-group">
+          <label>Select Route</label>
+          <select id="route" required>
+            <option value="">Choose Route</option>
+            <option>CUET - GEC Circle</option>
+            <option>CUET - Bahaddarhat</option>
+            <option>CUET - New Market</option>
+            <option>CUET - Oxygen</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label>Travel Date</label>
+          <input type="date" id="date" required>
+        </div>
+
+        <div class="form-group">
+          <label>Seat Number</label>
+          <input type="number" id="seat" min="1" max="40" required>
+        </div>
+
+        <button type="submit" class="btn" style="width:100%;">Confirm Booking</button>
+        <div class="success" id="successMsg">Booking Successful!</div>
+      </form>
+    </section>
+
+    <section id="routes">
+      <h2 style="text-align:center; color:#003366; margin-bottom:25px;">Available Routes</h2>
+      <div class="routes">
+        <div class="route-card">
+          <h4>CUET - GEC Circle</h4>
+          <p>Departure: 7:30 AM</p>
+          <p>Seats: 40</p>
+        </div>
+
+        <div class="route-card">
+          <h4>CUET - Bahaddarhat</h4>
+          <p>Departure: 8:00 AM</p>
+          <p>Seats: 40</p>
+        </div>
+
+        <div class="route-card">
+          <h4>CUET - New Market</h4>
+          <p>Departure: 8:15 AM</p>
+          <p>Seats: 40</p>
+        </div>
+
+        <div class="route-card">
+          <h4>CUET - Oxygen</h4>
+          <p>Departure: 8:30 AM</p>
+          <p>Seats: 40</p>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <footer id="contact">
+    <p>&copy; 2026 CUET Bus Booking System | Developed for CUET Students</p>
+  </footer>
+
+  <script>
+    function scrollToBooking() {
+      document.getElementById("booking").scrollIntoView({ behavior: "smooth" });
+    }
+
+    document.getElementById("busForm").addEventListener("submit", function(e){
+      e.preventDefault();
+
+      let name = document.getElementById("name").value;
+      let studentId = document.getElementById("studentId").value;
+      let route = document.getElementById("route").value;
+      let date = document.getElementById("date").value;
+      let seat = document.getElementById("seat").value;
+
+      if(name && studentId && route && date && seat){
+        document.getElementById("successMsg").style.display = "block";
+        document.getElementById("busForm").reset();
+
+        setTimeout(() => {
+          document.getElementById("successMsg").style.display = "none";
+        }, 3000);
+      }
+    });
+  </script>
+
+</body>
+</html>
